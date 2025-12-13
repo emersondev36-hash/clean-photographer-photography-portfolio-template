@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "motion/react";
-import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
 interface GalleryItem {
   type?: "image" | "video";
@@ -8,10 +6,6 @@ interface GalleryItem {
   videoSrc?: string;
   highResSrc?: string;
   alt: string;
-  photographer?: string;
-  client?: string;
-  location?: string;
-  details?: string;
   span?: number;
   width?: number;
   height?: number;
@@ -34,23 +28,16 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
   const handleImageHover = (index: number) => {
     setHoveredIndex(index);
 
-    // Clear existing timer
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
 
-    // Set new timer to reset after 2800ms
     timerRef.current = setTimeout(() => {
       setHoveredIndex(null);
-    }, 2800);
-  };
-
-  const handleImageLeave = () => {
-    // Don't reset hoveredIndex on mouse leave, let the timer handle it
+    }, 3000);
   };
 
   useEffect(() => {
-    // Cleanup timer on unmount
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
@@ -59,20 +46,19 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
   }, []);
 
   return (
-    <div className="max-w-[1600px] mx-auto md:px-5 pb-16">
-      <div className="gallery-hover-container text-center">
+    <div className="max-w-[1800px] mx-auto px-4 md:px-8 pb-20">
+      <div className="text-center">
         {images.map((image, index) => (
           <button
             key={index}
             onClick={() => onImageClick(index)}
             onMouseEnter={() => handleImageHover(index)}
-            onMouseLeave={handleImageLeave}
-            className="relative cursor-zoom-in gallery-image inline-block align-top p-[3px] md:p-1 lg:p-1.5"
-            style={{ height: "270px" }}
+            onMouseLeave={() => setHoveredIndex(null)}
+            className="relative cursor-zoom-in inline-block align-top p-1 md:p-1.5 lg:p-2 group"
+            style={{ height: "300px" }}
           >
             <div className="relative h-full overflow-hidden">
               {image.type === "video" ? (
-                // Video element with thumbnail poster
                 <div className="relative h-full w-auto inline-block">
                   {image.width && image.height && (
                     <svg
@@ -81,11 +67,7 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
                       viewBox={`0 0 ${image.width} ${image.height}`}
                       className="h-full w-auto"
                     >
-                      <rect
-                        width={image.width}
-                        height={image.height}
-                        fill="white"
-                      />
+                      <rect width={image.width} height={image.height} className="fill-muted" />
                     </svg>
                   )}
                   <video
@@ -95,26 +77,21 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
                     loop
                     playsInline
                     onLoadedData={() => handleImageLoad(index)}
-                    className={`absolute top-0 left-0 h-full w-auto object-contain transition-all duration-400 ${
+                    className={`absolute top-0 left-0 h-full w-auto object-contain transition-all duration-700 ease-smooth ${
                       hoveredIndex !== null && hoveredIndex !== index
-                        ? "grayscale"
-                        : ""
-                    }`}
+                        ? "grayscale opacity-40"
+                        : "grayscale-0 opacity-100"
+                    } group-hover:scale-[1.02]`}
                     style={{
-                      opacity: loadedImages.has(index) ? 1 : 0,
-                      transition: "opacity 0.5s ease-out",
+                      opacity: loadedImages.has(index) ? (hoveredIndex !== null && hoveredIndex !== index ? 0.4 : 1) : 0,
+                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                   >
                     <source src={image.videoSrc} type="video/mp4" />
                   </video>
                 </div>
               ) : (
-                // Image element with SVG placeholder
-                <picture
-                  className={`inline-block h-full w-auto ${
-                    loadedImages.has(index) ? "show" : ""
-                  }`}
-                >
+                <picture className={`inline-block h-full w-auto ${loadedImages.has(index) ? "show" : ""}`}>
                   {image.width && image.height && (
                     <svg
                       width={image.width}
@@ -122,25 +99,21 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
                       viewBox={`0 0 ${image.width} ${image.height}`}
                       className="h-full w-auto"
                     >
-                      <rect
-                        width={image.width}
-                        height={image.height}
-                        fill="white"
-                      />
+                      <rect width={image.width} height={image.height} className="fill-muted" />
                     </svg>
                   )}
                   <img
                     src={image.src}
                     alt={image.alt}
                     onLoad={() => handleImageLoad(index)}
-                    className={`absolute top-0 left-0 h-full w-auto object-contain transition-all duration-400 ${
+                    className={`absolute top-0 left-0 h-full w-auto object-contain transition-all duration-700 ease-smooth ${
                       hoveredIndex !== null && hoveredIndex !== index
-                        ? "grayscale"
-                        : ""
-                    }`}
+                        ? "grayscale opacity-40"
+                        : "grayscale-0 opacity-100"
+                    } group-hover:scale-[1.02]`}
                     style={{
-                      opacity: loadedImages.has(index) ? 1 : 0,
-                      transition: "opacity 0.5s ease-out",
+                      opacity: loadedImages.has(index) ? (hoveredIndex !== null && hoveredIndex !== index ? 0.4 : 1) : 0,
+                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                     loading="lazy"
                   />

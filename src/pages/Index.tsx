@@ -14,7 +14,6 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Homepage always shows SELECTED category
   const activeCategory = "SELECTED";
 
   useEffect(() => {
@@ -45,19 +44,11 @@ const Index = () => {
     "@type": "Person",
     "name": "Maria Silva",
     "jobTitle": "Fotógrafa de Produção",
-    "description": "Fotógrafa de produção especializada em moda, editorial e fotografia comercial. Criando imagens marcantes para marcas e publicações.",
+    "description": "Fotógrafa de produção especializada em moda, editorial e fotografia comercial.",
     "url": "https://mariasilva.com.br",
     "image": "https://mariasilva.com.br/og-image.jpg",
-    "sameAs": [
-      "https://instagram.com/mariasilva.foto"
-    ],
-    "knowsAbout": [
-      "Fotografia de Moda",
-      "Fotografia Editorial",
-      "Produção Comercial",
-      "Campanhas de Moda",
-      "Fotografia de Marcas"
-    ],
+    "sameAs": ["https://instagram.com/mariasilva.foto"],
+    "knowsAbout": ["Fotografia de Moda", "Fotografia Editorial", "Produção Comercial"],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "São Paulo",
@@ -69,15 +60,13 @@ const Index = () => {
     <>
       <SEO
         title="Maria Silva - Produção & Fotografia de Moda"
-        description="Fotógrafa de produção especializada em moda, editorial e fotografia comercial. Criando imagens marcantes para marcas e publicações."
+        description="Fotógrafa de produção especializada em moda, editorial e fotografia comercial."
         canonicalUrl="/"
         ogType="profile"
         jsonLd={jsonLd}
       />
 
-      <PortfolioHeader
-        activeCategory={activeCategory}
-      />
+      <PortfolioHeader activeCategory={activeCategory} />
       
       <main>
         <PhotographerBio />
@@ -89,15 +78,17 @@ const Index = () => {
         )}
 
         {!error && displayImages.length > 0 && (
-          <MasonryGallery
-            images={displayImages}
-            onImageClick={handleImageClick}
-          />
+          <div className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <MasonryGallery
+              images={displayImages}
+              onImageClick={handleImageClick}
+            />
+          </div>
         )}
 
         {!loading && !error && displayImages.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-muted-foreground">Nenhuma imagem encontrada nesta categoria.</p>
+            <p className="text-muted-foreground">Nenhuma imagem encontrada.</p>
           </div>
         )}
       </main>

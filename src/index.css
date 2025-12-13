@@ -2,90 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Sophisticated Dark Design System */
 
 @layer base {
   :root {
-    --background: 30 20% 97%;
-    --foreground: 25 30% 15%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
 
-    --card: 30 20% 97%;
-    --card-foreground: 25 30% 15%;
+    --card: 0 0% 96%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 30 20% 97%;
-    --popover-foreground: 25 30% 15%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 18 60% 45%;
-    --primary-foreground: 30 20% 97%;
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 30 25% 90%;
-    --secondary-foreground: 25 30% 15%;
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 30 15% 85%;
-    --muted-foreground: 25 15% 45%;
+    --muted: 0 0% 88%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 18 60% 45%;
-    --accent-foreground: 30 20% 97%;
+    --accent: 45 100% 55%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 20% 85%;
-    --input: 30 15% 82%;
-    --ring: 18 60% 45%;
+    --border: 0 0% 88%;
+    --input: 0 0% 85%;
+    --ring: 45 100% 55%;
 
     --radius: 0rem;
 
-    --gray-50: 30 20% 98%;
-    --gray-100: 30 18% 96%;
-    --gray-200: 30 15% 90%;
-    --gray-300: 30 12% 80%;
-    --gray-400: 25 10% 60%;
-    --gray-500: 25 12% 45%;
-    --gray-600: 25 15% 35%;
-    --gray-800: 25 25% 18%;
-    --gray-900: 25 30% 12%;
+    --gray-50: 0 0% 98%;
+    --gray-100: 0 0% 96%;
+    --gray-200: 0 0% 90%;
+    --gray-300: 0 0% 80%;
+    --gray-400: 0 0% 55%;
+    --gray-500: 0 0% 40%;
+    --gray-600: 0 0% 30%;
+    --gray-800: 0 0% 15%;
+    --gray-900: 0 0% 8%;
   }
 
   .dark {
-    --background: 25 25% 10%;
-    --foreground: 30 25% 85%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 92%;
 
-    --card: 25 22% 13%;
-    --card-foreground: 30 25% 85%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 25 22% 13%;
-    --popover-foreground: 30 25% 85%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 92%;
 
-    --primary: 18 55% 55%;
-    --primary-foreground: 25 25% 10%;
+    --primary: 0 0% 92%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 25 18% 18%;
-    --secondary-foreground: 30 25% 85%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 85%;
 
-    --muted: 25 15% 22%;
-    --muted-foreground: 30 18% 55%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 18 55% 55%;
-    --accent-foreground: 25 25% 10%;
+    --accent: 45 100% 55%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 25 15% 22%;
-    --input: 25 12% 25%;
-    --ring: 18 55% 55%;
+    --border: 0 0% 15%;
+    --input: 0 0% 18%;
+    --ring: 45 100% 55%;
 
-    --gray-50: 25 18% 16%;
-    --gray-100: 25 15% 20%;
-    --gray-200: 25 12% 28%;
-    --gray-300: 25 10% 38%;
-    --gray-400: 30 12% 50%;
-    --gray-500: 30 15% 60%;
-    --gray-600: 30 20% 70%;
-    --gray-800: 30 25% 82%;
+    --gray-50: 0 0% 8%;
+    --gray-100: 0 0% 12%;
+    --gray-200: 0 0% 18%;
+    --gray-300: 0 0% 28%;
+    --gray-400: 0 0% 45%;
+    --gray-500: 0 0% 55%;
+    --gray-600: 0 0% 70%;
+    --gray-800: 0 0% 85%;
+    --gray-900: 0 0% 92%;
   }
 }
 
@@ -100,16 +99,56 @@ All colors MUST be HSL.
 
   /* Custom styles for react-medium-image-zoom dark mode support */
   [data-rmiz-modal-overlay] {
-    background-color: hsl(var(--background) / 0.95) !important;
-    backdrop-filter: blur(8px);
+    background-color: hsl(var(--background) / 0.98) !important;
+    backdrop-filter: blur(12px);
   }
 
   .dark [data-rmiz-modal-overlay] {
-    background-color: hsl(var(--background) / 0.95) !important;
+    background-color: hsl(var(--background) / 0.98) !important;
   }
 
   [data-rmiz-modal-img] {
-    border-radius: 0.5rem;
+    border-radius: 0;
+  }
+
+  /* Elegant text selection */
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+
+  /* Smooth image hover transitions */
+  .image-hover {
+    @apply transition-all duration-700 ease-out;
+  }
+
+  .image-hover:hover {
+    @apply scale-[1.02];
+  }
+
+  /* Elegant underline animation */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-500 ease-out;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Fade up animation for staggered reveals */
+  .fade-up {
+    @apply opacity-0 translate-y-8;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Golden accent glow */
+  .accent-glow {
+    text-shadow: 0 0 40px hsl(var(--accent) / 0.3);
   }
 }
 
@@ -122,23 +161,59 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Elegant headings with display font */
+  h1, h2, h3 {
+    @apply font-display;
+    letter-spacing: -0.02em;
   }
 
   /* Global focus styles for keyboard navigation */
   *:focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
   }
 
   /* Skip to content link */
   .skip-to-content {
     @apply absolute left-0 top-0 z-[100] -translate-y-full bg-foreground text-background px-6 py-3 text-sm uppercase tracking-widest;
     @apply focus:translate-y-0 transition-transform duration-200;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
   }
 }

@@ -2,24 +2,21 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import FocusTrap from "focus-trap-react";
-import { TextRoll } from "@/components/ui/text-roll";
 
 interface PortfolioHeaderProps {
   activeCategory: string;
 }
 
 const categories = [
-  { key: "SELECTED", label: "SELECIONADOS" },
-  { key: "COMMISSIONED", label: "ENCOMENDADOS" },
-  { key: "EDITORIAL", label: "EDITORIAL" },
-  { key: "PERSONAL", label: "PESSOAL" },
+  { key: "SELECTED", label: "Selecionados" },
+  { key: "COMMISSIONED", label: "Encomendados" },
+  { key: "EDITORIAL", label: "Editorial" },
+  { key: "PERSONAL", label: "Pessoal" },
 ];
 
 const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -31,7 +28,6 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
     };
   }, [mobileMenuOpen]);
 
-  // Close menu on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
@@ -43,21 +39,14 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background">
-      <div className="max-w-[1600px] mx-auto flex items-center justify-between md:justify-center px-3 md:px-5 py-3 gap-3">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
+      <div className="max-w-[1600px] mx-auto flex items-center justify-between px-6 md:px-10 py-5">
+        {/* Logo */}
         <Link
           to="/"
-          className="text-[10px] md:text-[11px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors font-inter whitespace-nowrap"
-          onMouseEnter={() => setHoveredItem('name')}
-          onMouseLeave={() => setHoveredItem(null)}
+          className="font-display text-lg md:text-xl tracking-tight text-foreground hover:text-accent transition-colors duration-500"
         >
-          {hoveredItem === 'name' ? (
-            <TextRoll duration={0.3} getEnterDelay={(i) => i * 0.02} getExitDelay={(i) => i * 0.02}>
-              MARIA SILVA
-            </TextRoll>
-          ) : (
-            "MARIA SILVA"
-          )}
+          Maria Silva
         </Link>
 
         {/* Mobile Menu Button */}
@@ -67,97 +56,81 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
           aria-label="Abrir menu de navegação"
           aria-expanded={mobileMenuOpen}
         >
-          <Menu size={20} />
+          <Menu size={22} strokeWidth={1.5} />
         </button>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-3">
-        {categories.map((category) => (
+        <nav className="hidden md:flex items-center gap-10">
+          {categories.map((category) => (
+            <Link
+              key={category.key}
+              to={`/category/${category.key.toLowerCase()}`}
+              className={`relative text-sm tracking-wide transition-colors duration-300 link-underline ${
+                activeCategory === category.key
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {category.label}
+            </Link>
+          ))}
+          
           <Link
-            key={category.key}
-            to={`/category/${category.key.toLowerCase()}`}
-            onMouseEnter={() => setHoveredItem(category.key)}
-            onMouseLeave={() => setHoveredItem(null)}
-            className={`text-[10px] md:text-[11px] uppercase tracking-widest font-inter transition-colors whitespace-nowrap ${
-              activeCategory === category.key
-                ? "text-foreground font-medium"
-                : "text-muted-foreground hover:text-foreground/80"
-            }`}
+            to="/about"
+            className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors duration-300 link-underline"
           >
-            {hoveredItem === category.key ? (
-              <TextRoll duration={0.3} getEnterDelay={(i) => i * 0.02} getExitDelay={(i) => i * 0.02}>
-                {category.label}
-              </TextRoll>
-            ) : (
-              category.label
-            )}
+            Sobre
           </Link>
-        ))}
-        
-        <Link
-          to="/about"
-          className="text-[10px] md:text-[11px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors font-inter whitespace-nowrap"
-          onMouseEnter={() => setHoveredItem('about')}
-          onMouseLeave={() => setHoveredItem(null)}
-        >
-          {hoveredItem === 'about' ? (
-            <TextRoll duration={0.3} getEnterDelay={(i) => i * 0.02} getExitDelay={(i) => i * 0.02}>
-              SOBRE
-            </TextRoll>
-          ) : (
-            "SOBRE"
-          )}
-        </Link>
-      </div>
+        </nav>
 
         {/* Mobile Menu Overlay */}
         {mobileMenuOpen && (
           <FocusTrap>
             <div
-              className="fixed inset-0 bg-background z-50 md:hidden"
+              className="fixed inset-0 bg-background z-50 md:hidden animate-fade-in"
               role="dialog"
               aria-modal="true"
               aria-label="Navegação mobile"
             >
               {/* Close Button */}
-              <div className="flex justify-end p-5">
+              <div className="flex justify-end p-6">
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 text-foreground/70 hover:text-foreground transition-colors"
                   aria-label="Fechar menu de navegação"
                 >
-                  <X size={24} />
+                  <X size={26} strokeWidth={1.5} />
                 </button>
               </div>
 
               {/* Mobile Navigation Links */}
-              <nav className="flex flex-col items-center justify-center gap-8 px-8 pt-12">
-                {/* Categories */}
-                {categories.map((category) => (
+              <nav className="flex flex-col items-center justify-center gap-10 px-8 pt-16">
+                {categories.map((category, index) => (
                   <Link
                     key={category.key}
                     to={`/category/${category.key.toLowerCase()}`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-lg uppercase tracking-widest font-inter transition-colors ${
+                    className={`font-display text-3xl tracking-tight transition-colors duration-300 ${
                       activeCategory === category.key
-                        ? "text-foreground font-medium"
-                        : "text-muted-foreground"
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
+                    style={{ animationDelay: `${index * 0.05}s` }}
                   >
                     {category.label}
                   </Link>
                 ))}
 
                 {/* Separator */}
-                <div className="w-16 h-px bg-border"></div>
+                <div className="w-12 h-px bg-accent/50 my-4"></div>
 
-                {/* Page Links */}
+                {/* About Link */}
                 <Link
                   to="/about"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors font-inter"
+                  className="font-display text-3xl tracking-tight text-muted-foreground hover:text-foreground transition-colors duration-300"
                 >
-                  SOBRE
+                  Sobre
                 </Link>
               </nav>
             </div>

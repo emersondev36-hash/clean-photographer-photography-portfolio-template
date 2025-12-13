@@ -129,20 +129,6 @@ const Lightbox = ({ images, initialIndex, onClose }: LightboxProps) => {
         {currentIndex + 1} of {images.length}
       </div>
 
-      {/* Museum-style Project Details - Bottom Left */}
-      <div className="fixed bottom-8 left-8 z-[101] text-foreground/60 text-xs font-inter leading-relaxed max-w-xs pointer-events-none">
-        {currentImage.photographer && (
-          <div className="mb-1">{currentImage.photographer}</div>
-        )}
-        {currentImage.client && (
-          <div className="mb-1">For {currentImage.client}</div>
-        )}
-        {currentImage.location && currentImage.details && (
-          <div className="text-foreground/40">
-            Shot in {currentImage.location}. {currentImage.details}.
-          </div>
-        )}
-      </div>
 
       {/* Image Container */}
       <div

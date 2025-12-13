@@ -146,36 +146,6 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
                   />
                 </picture>
               )}
-              <ProgressiveBlur
-                className="pointer-events-none absolute bottom-0 left-0 h-[80%] w-full"
-                blurIntensity={0.6}
-                animate={hoveredIndex === index ? "visible" : "hidden"}
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1 },
-                }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-              />
-              {image.photographer && image.client && (
-                <motion.div
-                  className="absolute bottom-0 left-0 w-full pointer-events-none"
-                  animate={hoveredIndex === index ? "visible" : "hidden"}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 },
-                  }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                >
-                  <div className="flex flex-col items-center gap-0 px-4 py-3 text-center">
-                    <p className="text-base font-medium text-white">
-                      For {image.client}
-                    </p>
-                    <span className="text-xs text-white/90">
-                      Shot in {image.location}. {image.details}.
-                    </span>
-                  </div>
-                </motion.div>
-              )}
             </div>
           </button>
         ))}

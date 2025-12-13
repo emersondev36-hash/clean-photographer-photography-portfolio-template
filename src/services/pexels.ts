@@ -154,15 +154,10 @@ export const fetchMixedMedia = async (
   // Transform videos
   const videos = videosData.videos.map((video: PexelsVideo) => ({
     type: 'video' as const,
-    src: video.image, // Thumbnail for gallery
+    src: video.image,
     videoSrc: video.video_files.find(f => f.quality === 'hd')?.link || video.video_files[0].link,
-    highResSrc: video.image, // Use same thumbnail for lightbox
-    alt: `Video by ${video.user.name}`,
-    photographer: video.user.name,
-    client: 'Pexels',
-    location: '',
-    details: `Video by ${video.user.name} on Pexels`,
-    category: 'PEXELS',
+    highResSrc: video.image,
+    alt: '',
     width: video.width,
     height: video.height,
   }));
@@ -194,15 +189,10 @@ export const fetchMixedMedia = async (
 
 export const transformPexelsToGalleryImage = (photo: PexelsPhoto) => {
   return {
-    src: photo.src.large, // Gallery thumbnail (~940px) - fast loading
-    highResSrc: photo.src.large2x, // Lightbox display (~1880px) - 2x retina resolution
-    alt: photo.alt || 'Fashion photography',
-    photographer: photo.photographer,
-    client: 'Pexels',
-    location: '',
-    details: `Photo by ${photo.photographer} on Pexels`,
-    category: 'PEXELS',
-    width: photo.width, // Intrinsic width for aspect ratio
-    height: photo.height // Intrinsic height for aspect ratio
+    src: photo.src.large,
+    highResSrc: photo.src.large2x,
+    alt: '',
+    width: photo.width,
+    height: photo.height
   };
 };

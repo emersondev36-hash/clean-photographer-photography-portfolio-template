@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import PortfolioHeader from "@/components/PortfolioHeader";
-import PhotographerBio from "@/components/PhotographerBio";
 import PortfolioFooter from "@/components/PortfolioFooter";
 import MasonryGallery from "@/components/MasonryGallery";
 import Lightbox from "@/components/Lightbox";
@@ -19,7 +18,6 @@ const CategoryGallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [page, setPage] = useState(1);
 
-  // Validate category
   if (!category || !validCategories.includes(category.toLowerCase())) {
     return <Navigate to="/" replace />;
   }
@@ -35,7 +33,7 @@ const CategoryGallery = () => {
         setImages(data.items);
       } catch (err) {
         console.error('Erro ao carregar mídia:', err);
-        setError('Falha ao carregar imagens. Por favor, tente novamente mais tarde.');
+        setError('Falha ao carregar imagens.');
       } finally {
         setLoading(false);
       }
@@ -51,22 +49,22 @@ const CategoryGallery = () => {
 
   const getCategoryTitle = (cat: string) => {
     const titles: Record<string, string> = {
-      'selected': 'Trabalhos Selecionados',
-      'commissioned': 'Projetos Encomendados',
-      'editorial': 'Fotografia Editorial',
-      'personal': 'Projetos Pessoais',
-      'all': 'Toda a Fotografia'
+      'selected': 'Selecionados',
+      'commissioned': 'Encomendados',
+      'editorial': 'Editorial',
+      'personal': 'Pessoal',
+      'all': 'Galeria Completa'
     };
     return titles[cat] || 'Galeria';
   };
 
   const getCategoryDescription = (cat: string) => {
     const descriptions: Record<string, string> = {
-      'selected': 'Seleção curada de campanhas de moda de luxo e trabalhos editoriais de alto padrão, apresentando minimalismo contemporâneo e elegância atemporal.',
-      'commissioned': 'Campanhas comerciais de moda para marcas de luxo, apresentando fotografia de produto com estética clean e execução profissional.',
-      'editorial': 'Fotografia editorial de moda para publicações de destaque, combinando visão artística com excelência comercial.',
-      'personal': 'Projetos pessoais artísticos explorando fotografia em preto e branco, retratos íntimos e experimentação criativa.',
-      'all': 'Portfólio completo abrangendo campanhas de moda, trabalhos editoriais e projetos pessoais com uma estética minimalista distintiva.'
+      'selected': 'Seleção curada de campanhas de moda e trabalhos editoriais.',
+      'commissioned': 'Campanhas comerciais para marcas de luxo.',
+      'editorial': 'Fotografia editorial para publicações de destaque.',
+      'personal': 'Projetos pessoais e experimentação criativa.',
+      'all': 'Portfólio completo de trabalhos.'
     };
     return descriptions[cat] || 'Explore a coleção';
   };
@@ -77,10 +75,7 @@ const CategoryGallery = () => {
     "name": `${getCategoryTitle(category)} - Maria Silva`,
     "description": getCategoryDescription(category),
     "url": `https://mariasilva.com.br/category/${category}`,
-    "creator": {
-      "@type": "Person",
-      "name": "Maria Silva"
-    }
+    "creator": { "@type": "Person", "name": "Maria Silva" }
   };
 
   return (
@@ -92,12 +87,23 @@ const CategoryGallery = () => {
         jsonLd={jsonLd}
       />
 
-      <PortfolioHeader
-        activeCategory={categoryUpper}
-      />
+      <PortfolioHeader activeCategory={categoryUpper} />
 
-      <main>
-        <PhotographerBio />
+      <main className="pt-24">
+        {/* Category Header */}
+        <section className="max-w-[1600px] mx-auto px-6 md:px-10 py-16 md:py-24">
+          <div className="max-w-3xl space-y-6">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent font-display">
+              Portfólio
+            </p>
+            <h1 className="font-display text-display-lg text-foreground">
+              {getCategoryTitle(category)}
+            </h1>
+            <p className="text-lg text-muted-foreground italic max-w-xl">
+              {getCategoryDescription(category)}
+            </p>
+          </div>
+        </section>
 
         {error && (
           <div className="text-center py-20">
@@ -106,15 +112,14 @@ const CategoryGallery = () => {
         )}
 
         {!error && images.length > 0 && (
-          <MasonryGallery
-            images={images}
-            onImageClick={handleImageClick}
-          />
+          <div className="animate-fade-in">
+            <MasonryGallery images={images} onImageClick={handleImageClick} />
+          </div>
         )}
 
         {!loading && !error && images.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-muted-foreground">Nenhuma imagem encontrada nesta categoria.</p>
+            <p className="text-muted-foreground">Nenhuma imagem encontrada.</p>
           </div>
         )}
       </main>

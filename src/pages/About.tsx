@@ -45,7 +45,6 @@ const About = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
 
-    // Simulate form submission
     setTimeout(() => {
       toast({
         title: "Mensagem enviada",
@@ -59,13 +58,12 @@ const About = () => {
   useEffect(() => {
     const loadPortrait = async () => {
       try {
-        // Fetch a professional photographer portrait from Pexels
-        const data = await fetchPexelsPhotos('PERSONAL', 1, 1); // Personal category has artistic portraits
+        const data = await fetchPexelsPhotos('PERSONAL', 1, 1);
         if (data.photos.length > 0) {
           const photo = data.photos[0];
           setPortrait({
             src: photo.src.large2x,
-            alt: photo.alt || 'Retrato',
+            alt: '',
             width: photo.width,
             height: photo.height,
           });
@@ -88,172 +86,164 @@ const About = () => {
         canonicalUrl="/about"
       />
 
-      <PortfolioHeader
-        activeCategory=""
-      />
+      <PortfolioHeader activeCategory="" />
       
-      <main className="min-h-screen">
-        <section className="max-w-[1600px] mx-auto pt-20 pb-12 md:pt-24 md:pb-16">
-          <div className="text-center space-y-8 mb-16 px-3 md:px-5 max-w-2xl mx-auto">
-            <div className="space-y-4">
-              <h1 className="font-playfair text-4xl md:text-5xl text-foreground">
-                Maria Silva
-              </h1>
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-inter">
-                PRODUÇÃO & FOTOGRAFIA
-              </p>
-            </div>
-
+      <main className="min-h-screen pt-24">
+        {/* Hero Section */}
+        <section className="max-w-[1600px] mx-auto px-6 md:px-10 py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* Portrait */}
-            {!loading && portrait && (
-              <div className="max-w-xs mx-auto border border-foreground/10 overflow-hidden">
-                <picture className="relative block">
-                  {portrait.width && portrait.height && (
-                    <svg
-                      width={portrait.width}
-                      height={portrait.height}
-                      viewBox={`0 0 ${portrait.width} ${portrait.height}`}
-                      className="w-full h-auto"
-                    >
-                      <rect
-                        width={portrait.width}
-                        height={portrait.height}
-                        fill="white"
-                      />
-                    </svg>
-                  )}
+            <div className="order-2 lg:order-1">
+              {!loading && portrait && (
+                <div className="relative overflow-hidden animate-blur-in">
                   <img
                     src={portrait.src}
                     alt={portrait.alt}
-                    className="absolute top-0 left-0 w-full h-auto grayscale"
-                    style={{
-                      opacity: loading ? 0 : 1,
-                      transition: 'opacity 0.5s ease-out'
-                    }}
+                    className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-1000"
                   />
-                </picture>
-              </div>
-            )}
-          </div>
-
-          {/* Bio Section */}
-          <div className="max-w-2xl mx-auto px-3 md:px-5 space-y-8 text-center text-foreground/80 text-sm leading-relaxed mb-16">
-            <p>
-              Fotógrafa de produção especializada em moda, editorial e fotografia comercial.
-              Criando imagens marcantes com precisão técnica e visão criativa para marcas
-              e publicações.
-            </p>
-
-            <p>
-              Serviços completos de produção incluindo direção de arte, locação, casting e
-              gerenciamento de set. Abordagem colaborativa garantindo execução impecável do conceito à entrega.
-            </p>
-
-            <div className="pt-8">
-              <h2 className="font-playfair text-xl text-foreground mb-4">Serviços</h2>
-              <p className="text-foreground/70 text-xs uppercase tracking-wider leading-loose">
-                Fotografia de Moda & Editorial / Produção Comercial / Direção de Arte & Criação /
-                Locação / Casting & Coordenação de Talentos
-              </p>
-            </div>
-
-            <div className="pt-4">
-              <h2 className="font-playfair text-xl text-foreground mb-4">Clientes Selecionados</h2>
-              <p className="text-foreground/70 text-xs uppercase tracking-wider leading-loose">
-                Diversas marcas de moda e publicações editoriais
-              </p>
-            </div>
-          </div>
-
-          {/* Contact Form Section */}
-          <div className="max-w-xl mx-auto px-3 md:px-5 pt-16">
-            <div className="text-center space-y-4 mb-12">
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-inter">
-                CONTATO
-              </p>
-              <h2 className="font-playfair text-4xl md:text-5xl text-foreground">
-                Entre em Contato
-              </h2>
-              <p className="text-foreground/80 text-sm leading-relaxed">
-                Para orçamentos e colaborações.
-              </p>
-            </div>
-
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm uppercase tracking-wider text-foreground/70 font-inter">
-                        Nome *
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Seu nome"
-                          className="border-0 border-b border-foreground/20 rounded-none bg-transparent text-foreground px-0 focus-visible:ring-0 focus-visible:border-foreground transition-colors"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm uppercase tracking-wider text-foreground/70 font-inter">
-                        E-mail *
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          type="email"
-                          placeholder="seu@email.com"
-                          className="border-0 border-b border-foreground/20 rounded-none bg-transparent text-foreground px-0 focus-visible:ring-0 focus-visible:border-foreground transition-colors"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm uppercase tracking-wider text-foreground/70 font-inter">
-                        Mensagem *
-                      </FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Conte-me sobre seu projeto..."
-                          className="border-0 border-b border-foreground/20 rounded-none bg-transparent text-foreground min-h-[150px] px-0 focus-visible:ring-0 focus-visible:border-foreground transition-colors resize-none"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="pt-4 text-center">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    variant="outline"
-                    className="w-full md:w-auto px-12 py-6 text-sm uppercase tracking-widest font-inter border-foreground/40 hover:bg-foreground hover:text-background transition-all"
-                  >
-                    {isSubmitting ? "Enviando..." : "Enviar"}
-                  </Button>
                 </div>
-              </form>
-            </Form>
+              )}
+            </div>
+
+            {/* Bio */}
+            <div className="order-1 lg:order-2 space-y-8">
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-[0.3em] text-accent font-display">
+                  Sobre
+                </p>
+                <h1 className="font-display text-display-lg text-foreground">
+                  Maria Silva
+                </h1>
+                <p className="text-lg text-muted-foreground italic">
+                  Fotógrafa de produção & diretora criativa
+                </p>
+              </div>
+
+              <div className="space-y-6 text-muted-foreground leading-relaxed">
+                <p>
+                  Especializada em moda, editorial e fotografia comercial.
+                  Criando imagens marcantes com precisão técnica e visão criativa 
+                  para marcas e publicações há mais de uma década.
+                </p>
+
+                <p>
+                  Ofereço serviços completos de produção incluindo direção de arte, 
+                  locação, casting e gerenciamento de set. Minha abordagem colaborativa 
+                  garante execução impecável do conceito à entrega.
+                </p>
+              </div>
+
+              <div className="pt-8 space-y-6">
+                <div>
+                  <h3 className="font-display text-sm uppercase tracking-[0.2em] text-foreground mb-4">
+                    Serviços
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {["Fotografia de Moda", "Editorial", "Produção Comercial", "Direção de Arte", "Casting"].map((service) => (
+                      <span key={service} className="px-4 py-2 border border-border text-sm text-muted-foreground">
+                        {service}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section className="border-t border-border/30">
+          <div className="max-w-[1600px] mx-auto px-6 md:px-10 py-24">
+            <div className="max-w-2xl mx-auto">
+              <div className="text-center space-y-4 mb-16">
+                <p className="text-xs uppercase tracking-[0.3em] text-accent font-display">
+                  Contato
+                </p>
+                <h2 className="font-display text-display-md text-foreground">
+                  Vamos trabalhar juntos
+                </h2>
+                <p className="text-muted-foreground">
+                  Para orçamentos, colaborações ou apenas dizer olá.
+                </p>
+              </div>
+
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-display">
+                            Nome
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Seu nome"
+                              className="border-0 border-b border-border rounded-none bg-transparent text-foreground px-0 py-4 text-lg focus-visible:ring-0 focus-visible:border-accent transition-colors duration-500"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-display">
+                            E-mail
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              type="email"
+                              placeholder="seu@email.com"
+                              className="border-0 border-b border-border rounded-none bg-transparent text-foreground px-0 py-4 text-lg focus-visible:ring-0 focus-visible:border-accent transition-colors duration-500"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-display">
+                          Mensagem
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Conte-me sobre seu projeto..."
+                            className="border-0 border-b border-border rounded-none bg-transparent text-foreground min-h-[150px] px-0 py-4 text-lg focus-visible:ring-0 focus-visible:border-accent transition-colors duration-500 resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <div className="pt-8 flex justify-center">
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-16 py-6 text-sm uppercase tracking-[0.2em] font-display bg-foreground text-background hover:bg-accent hover:text-accent-foreground transition-all duration-500"
+                    >
+                      {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </div>
           </div>
         </section>
       </main>

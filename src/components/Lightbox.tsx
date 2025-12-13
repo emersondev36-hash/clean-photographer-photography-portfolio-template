@@ -103,30 +103,18 @@ const Lightbox = ({ images, initialIndex, onClose }: LightboxProps) => {
       {/* Back Button - Top Left */}
       <button
         onClick={onClose}
-        className="fixed top-0 left-0 w-16 h-16 md:w-[6em] md:h-[6em] z-[200] flex items-center justify-center opacity-30 hover:opacity-100 transition-opacity"
-        aria-label="Close lightbox"
+        className="fixed top-6 left-6 z-[200] flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-300"
+        aria-label="Fechar"
       >
-        <svg viewBox="0 0 60.08 60.08" className="absolute left-6 top-6 md:left-[2.4em] md:top-[2.4em] w-6 h-6 md:w-[1.8em] md:h-[1.8em]">
-          <path 
-            d="M25.64,58.83L2.56,30.04,25.64,1.25" 
-            fill="none"
-            fillRule="evenodd"
-            stroke="#000"
-            strokeWidth="3.5"
-            strokeMiterlimit="10"
-          />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
         </svg>
+        <span className="text-xs uppercase tracking-[0.2em] font-display hidden md:inline">Voltar</span>
       </button>
 
-      {/* Page Indicator Near Cursor */}
-      <div 
-        className="fixed z-[102] text-foreground/60 text-sm font-inter tracking-wide pointer-events-none"
-        style={{ 
-          left: `${cursorPos.x + 20}px`, 
-          top: `${cursorPos.y + 20}px` 
-        }}
-      >
-        {currentIndex + 1} of {images.length}
+      {/* Page Indicator - Top Right */}
+      <div className="fixed top-6 right-6 z-[102] text-muted-foreground text-xs uppercase tracking-[0.2em] font-display">
+        {currentIndex + 1} — {images.length}
       </div>
 
 

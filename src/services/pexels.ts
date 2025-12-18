@@ -36,10 +36,10 @@ export interface PexelsResponse {
 
 // Category-specific search queries for fashion photography
 export const categoryQueries: Record<string, string> = {
-  'SELECTED': 'glamour fashion model beauty portrait',
-  'COMMISSIONED': 'sensual fashion editorial beauty model',
-  'EDITORIAL': 'fashion model portrait studio lighting',
-  'PERSONAL': 'beauty portrait woman artistic lighting'
+  'SELECTED': 'sexy woman model portrait studio',
+  'COMMISSIONED': 'lingerie model fashion beauty',
+  'EDITORIAL': 'glamour woman portrait sensual',
+  'PERSONAL': 'boudoir photography woman elegant'
 };
 
 export const fetchPexelsPhotos = async (

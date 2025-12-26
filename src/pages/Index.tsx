@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import PortfolioHeader from "@/components/PortfolioHeader";
 import PhotographerBio from "@/components/PhotographerBio";
-import PortfolioFooter from "@/components/PortfolioFooter";
 import MasonryGallery from "@/components/MasonryGallery";
 import Lightbox from "@/components/Lightbox";
 import Marquee from "@/components/Marquee";
@@ -29,8 +27,8 @@ const Index = () => {
         const data = await fetchMixedMedia(activeCategory, 1, 20);
         setDisplayImages(data.items);
       } catch (err) {
-        console.error('Erro ao carregar mídia:', err);
-        setError('Falha ao carregar imagens. Por favor, tente novamente mais tarde.');
+        console.error("Erro ao carregar mídia:", err);
+        setError("Falha ao carregar imagens. Por favor, tente novamente mais tarde.");
       } finally {
         setLoading(false);
       }
@@ -47,16 +45,21 @@ const Index = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Tatuagens Style",
-    "jobTitle": "Estúdio de Tatuagem",
-    "description": "Estúdio de tatuagem artística especializado em blackwork, fine line e realismo. Arte permanente que conta sua história.",
-    "url": "https://tatuagensstyle.com.br",
-    "image": "https://tatuagensstyle.com.br/og-image.jpg",
-    "sameAs": ["https://instagram.com/tatuagensstyle"],
-    "knowsAbout": ["Blackwork", "Fine Line", "Realismo", "Tatuagem Geométrica", "Dotwork"],
+    "name": "Estúdio de Tatuagem",
+    "jobTitle": "Tatuador",
+    "description":
+      "Estúdio de tatuagem artística especializado em blackwork, fine line e realismo.",
+    "url": "https://exemplo.com",
+    "knowsAbout": [
+      "Blackwork",
+      "Fine Line",
+      "Realismo",
+      "Tatuagem Geométrica",
+      "Dotwork"
+    ],
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "São Paulo",
+      "addressLocality": "Brasil",
       "addressCountry": "BR"
     }
   };
@@ -64,19 +67,16 @@ const Index = () => {
   return (
     <>
       <SEO
-        title="Tatuagens Style - Arte em Tatuagem | Blackwork, Fine Line & Realismo"
-        description="Estúdio de tatuagem artística especializado em blackwork, fine line e realismo. Arte permanente que conta sua história."
+        title="Estúdio de Tatuagem | Blackwork, Fine Line & Realismo"
+        description="Estúdio de tatuagem artística especializado em blackwork, fine line e realismo."
         canonicalUrl="/"
         ogType="website"
         jsonLd={jsonLd}
       />
 
-      <PortfolioHeader activeCategory={activeCategory} />
-      
       <main>
         <PhotographerBio />
-        
-        {/* Elegant marquee divider */}
+
         <Marquee text="Blackwork • Fine Line • Realismo • Geométrico • Dotwork • Ornamental" />
 
         {error && (
@@ -85,12 +85,10 @@ const Index = () => {
           </div>
         )}
 
-        {/* Gallery Section */}
         {!error && displayImages.length > 0 && (
           <section className="relative">
-            {/* Section Header */}
             <div className="max-w-[1800px] mx-auto px-6 md:px-12 pt-24 pb-12">
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-4"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -101,8 +99,8 @@ const Index = () => {
                   Trabalhos Recentes
                 </span>
               </motion.div>
-              
-              <motion.h2 
+
+              <motion.h2
                 className="font-serif text-display-md text-foreground mt-4"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +110,7 @@ const Index = () => {
                 Portfólio
               </motion.h2>
             </div>
-            
+
             <MasonryGallery
               images={displayImages}
               onImageClick={handleImageClick}
@@ -122,100 +120,44 @@ const Index = () => {
 
         {!loading && !error && displayImages.length === 0 && (
           <div className="text-center py-32">
-            <p className="font-mono text-sm text-muted-foreground">Nenhuma imagem encontrada.</p>
+            <p className="font-mono text-sm text-muted-foreground">
+              Nenhuma imagem encontrada.
+            </p>
           </div>
         )}
 
-        {/* AI Suggestions Section */}
         <AISuggestions />
 
-        {/* AI Image Generator Section */}
         <section className="relative py-32 overflow-hidden">
-          {/* Background */}
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-900/30 to-transparent pointer-events-none" />
-          
+
           <div className="relative max-w-[1400px] mx-auto px-6 md:px-12">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              {/* Left - Content */}
               <div>
-                <motion.div 
-                  className="flex items-center gap-3 mb-6"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="w-8 h-px bg-gradient-to-r from-primary to-transparent" />
-                  <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                    Gerador de Arte
-                  </span>
-                </motion.div>
-                
-                <motion.h2 
+                <motion.h2
                   className="font-serif text-display-lg text-foreground leading-[0.9] mb-6"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
                 >
                   Visualize sua{" "}
-                  <span className="text-primary text-glow-subtle">Arte</span>
+                  <span className="text-primary">Arte</span>
                 </motion.h2>
-                
-                <motion.p 
+
+                <motion.p
                   className="font-mono text-sm text-muted-foreground leading-relaxed max-w-md mb-10"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
                 >
-                  Use inteligência artificial para gerar conceitos únicos de tatuagem. 
-                  Descreva sua visão e deixe a IA criar uma prévia da sua próxima arte.
+                  Gere conceitos únicos de tatuagem usando inteligência artificial.
                 </motion.p>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <AIImageGenerator />
-                </motion.div>
+
+                <AIImageGenerator />
               </div>
-              
-              {/* Right - Decorative */}
-              <motion.div 
-                className="hidden lg:block relative"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                <div className="relative aspect-square">
-                  {/* Decorative grid */}
-                  <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-2">
-                    {[...Array(9)].map((_, i) => (
-                      <div 
-                        key={i} 
-                        className="border border-border/10 hover:border-primary/20 transition-colors duration-500"
-                        style={{ transitionDelay: `${i * 50}ms` }}
-                      />
-                    ))}
-                  </div>
-                  
-                  {/* Center text */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <span className="font-serif text-8xl text-primary/10">AI</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </div>
         </section>
       </main>
 
-      {lightboxOpen && displayImages.length > 0 && (
+      {lightboxOpen && (
         <Lightbox
           images={displayImages}
           initialIndex={lightboxIndex}
@@ -223,33 +165,9 @@ const Index = () => {
         />
       )}
 
-      {/* AI Chat Assistant - floating */}
       <AIChatAssistant />
-
-      <PortfolioFooter />
     </>
   );
 };
-a[href*="lovable.dev"],
-
-iframe[src*="lovable.dev"],
-
-div[style*="Edit with Lovable"],
-
-.lovable-badge {
-
-  display: none !important;
-
-  opacity: 0 !important;
-
-  visibility: hidden !important;
-
-  pointer-events: none !important;
-
-  position: absolute !important;
-
-  z-index: -9999 !important;
-
-}
 
 export default Index;

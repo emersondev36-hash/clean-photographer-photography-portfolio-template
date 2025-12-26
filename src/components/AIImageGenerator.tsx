@@ -62,22 +62,23 @@ export const AIImageGenerator: React.FC = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="gap-3 bg-gradient-to-r from-primary to-accent hover:opacity-90 glow-purple rounded-full px-8 py-6 text-base font-display">
-          <Wand2 className="w-5 h-5" />
-          Gerar com IA
+        <Button className="group gap-4 bg-transparent border border-primary/40 hover:border-primary hover:bg-primary/10 text-foreground rounded-none px-10 py-7 font-mono text-xs uppercase tracking-[0.2em] transition-all duration-500">
+          <Wand2 className="w-4 h-4 text-primary group-hover:text-foreground transition-colors" strokeWidth={1.5} />
+          <span>Gerar com IA</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] glass-card border-border/30 rounded-3xl">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 font-display text-xl">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center glow-purple">
-              <Wand2 className="w-5 h-5 text-primary-foreground" />
+      <DialogContent className="sm:max-w-[520px] bg-obsidian-900 border border-border/30 rounded-none p-0 overflow-hidden">
+        <DialogHeader className="p-8 pb-0">
+          <DialogTitle className="flex items-center gap-4 font-serif text-2xl text-foreground">
+            <div className="w-12 h-12 border border-primary/40 flex items-center justify-center">
+              <Wand2 className="w-5 h-5 text-primary" strokeWidth={1.5} />
             </div>
-            Gerador de Tatuagens IA
+            Gerador de Tatuagens
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-5 pt-4">
+        <div className="p-8 space-y-6">
+          {/* Input area */}
           <div className="flex gap-3">
             <Input
               value={prompt}
@@ -85,63 +86,72 @@ export const AIImageGenerator: React.FC = () => {
               placeholder="Descreva a tatuagem que deseja visualizar..."
               disabled={isGenerating}
               onKeyDown={(e) => e.key === 'Enter' && handleGenerate()}
-              className="bg-graphite-800/50 border-border/30 rounded-xl"
+              className="bg-obsidian-800/50 border-border/30 rounded-none font-mono text-sm placeholder:text-muted-foreground/50"
             />
             <Button 
               onClick={handleGenerate} 
               disabled={isGenerating || !prompt.trim()}
-              className="rounded-xl bg-gradient-to-br from-primary to-accent glow-purple"
+              className="rounded-none bg-primary/20 border border-primary/40 hover:bg-primary/30 hover:border-primary px-4"
             >
-              {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Wand2 className="w-4 h-4" />}
+              {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Wand2 className="w-4 h-4 text-primary" />}
             </Button>
           </div>
 
-          <div className="text-xs text-muted-foreground glass-subtle rounded-xl p-4">
-            <span className="text-primary font-medium">Sugestões:</span> lobo geométrico minimalista, flores em fine line, caveira blackwork com mandala, fênix em realismo
+          {/* Suggestions */}
+          <div className="border border-border/20 p-4">
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary block mb-2">Sugestões</span>
+            <p className="font-mono text-xs text-muted-foreground leading-relaxed">
+              lobo geométrico minimalista, flores em fine line, caveira blackwork com mandala, fênix em realismo
+            </p>
           </div>
 
+          {/* Generated content area */}
           <AnimatePresence mode="wait">
             {isGenerating && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="aspect-square glass-subtle rounded-2xl flex items-center justify-center"
+                className="aspect-square border border-border/20 flex items-center justify-center"
               >
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mx-auto mb-4 animate-glow-pulse">
-                    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                  <div className="w-16 h-16 border border-primary/30 flex items-center justify-center mx-auto mb-6">
+                    <Loader2 className="w-6 h-6 animate-spin text-primary" />
                   </div>
-                  <p className="text-sm text-muted-foreground">Criando sua obra de arte...</p>
+                  <p className="font-mono text-xs text-muted-foreground uppercase tracking-[0.2em]">
+                    Criando sua obra...
+                  </p>
                 </div>
               </motion.div>
             )}
 
             {generatedImage && !isGenerating && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="relative"
+                className="relative group"
               >
-                <div className="rounded-2xl overflow-hidden glow-purple border border-border/30">
+                <div className="border border-border/30 overflow-hidden">
                   <img
                     src={generatedImage}
                     alt="Imagem gerada por IA"
-                    className="w-full rounded-2xl"
+                    className="w-full"
                   />
                 </div>
-                <div className="absolute top-3 right-3 flex gap-2">
+                
+                {/* Action buttons */}
+                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Button 
                     size="icon" 
                     onClick={handleDownload}
-                    className="rounded-xl glass bg-graphite-900/80 hover:bg-graphite-800"
+                    className="w-10 h-10 rounded-none bg-obsidian-950/80 border border-border/30 hover:border-primary/50 hover:bg-obsidian-900"
                   >
                     <Download className="w-4 h-4" />
                   </Button>
                   <Button 
                     size="icon" 
                     onClick={() => setGeneratedImage(null)}
-                    className="rounded-xl glass bg-graphite-900/80 hover:bg-graphite-800"
+                    className="w-10 h-10 rounded-none bg-obsidian-950/80 border border-border/30 hover:border-primary/50 hover:bg-obsidian-900"
                   >
                     <X className="w-4 h-4" />
                   </Button>

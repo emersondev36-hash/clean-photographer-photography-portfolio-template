@@ -127,6 +127,9 @@ const PortfolioFooter = () => {
           <p className="text-xs text-muted-foreground tracking-wide">
             © {new Date().getFullYear()} Tatuagens Style. Todos os direitos reservados.
           </p>
+          <p className="text-xs text-muted-foreground/50 tracking-wider">
+            Produzido pela <span className="text-primary/70">Rorschach Motion</span> • 41997539084
+          </p>
           <p className="text-xs text-muted-foreground/50 tracking-wider uppercase">
             São Paulo, Brasil
           </p>

@@ -11,6 +11,7 @@ import { fetchMixedMedia } from "@/services/pexels";
 import { AIChatAssistant } from "@/components/AIChatAssistant";
 import { AISuggestions } from "@/components/AISuggestions";
 import { AIImageGenerator } from "@/components/AIImageGenerator";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 
 const Index = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -125,6 +126,9 @@ const Index = () => {
             <p className="font-mono text-sm text-muted-foreground">Nenhuma imagem encontrada.</p>
           </div>
         )}
+
+        {/* Testimonials Section */}
+        <TestimonialsCarousel />
 
         {/* AI Suggestions Section */}
         <AISuggestions />

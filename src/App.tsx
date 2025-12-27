@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import Project from "./pages/Project";
 import CategoryGallery from "./pages/CategoryGallery";
 import NotFound from "./pages/NotFound";
@@ -24,6 +25,7 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/category/:category" element={<PageTransition><CategoryGallery /></PageTransition>} />
         <Route path="/project/:slug" element={<PageTransition><Project /></PageTransition>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

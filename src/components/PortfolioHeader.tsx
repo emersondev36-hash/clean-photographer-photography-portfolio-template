@@ -9,10 +9,10 @@ interface PortfolioHeaderProps {
 }
 
 const categories = [
-  { key: "SELECTED", label: "Selecionados" },
-  { key: "COMMISSIONED", label: "Encomendados" },
-  { key: "EDITORIAL", label: "Editorial" },
-  { key: "PERSONAL", label: "Pessoal" },
+  { key: "SELECTED", label: "Destaques" },
+  { key: "COMMISSIONED", label: "Blackwork" },
+  { key: "EDITORIAL", label: "Fine Line" },
+  { key: "PERSONAL", label: "Realismo" },
 ];
 
 const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
@@ -100,6 +100,13 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
           >
             Sobre
           </Link>
+          
+          <Link
+            to="/contact"
+            className="px-5 py-2.5 rounded-full text-sm tracking-wide glass text-primary hover:glow-purple transition-all duration-300"
+          >
+            Contato
+          </Link>
         </nav>
 
         {/* Mobile Menu Overlay */}
@@ -171,6 +178,21 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
                     className="font-display text-4xl tracking-tight text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     Sobre
+                  </Link>
+                </motion.div>
+                
+                {/* Contact Link */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <Link
+                    to="/contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="font-display text-4xl tracking-tight text-primary text-glow transition-colors duration-300"
+                  >
+                    Contato
                   </Link>
                 </motion.div>
               </nav>

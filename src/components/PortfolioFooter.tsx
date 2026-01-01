@@ -69,10 +69,12 @@ const PortfolioFooter = () => {
             </h4>
             <nav className="flex flex-col gap-4">
               {[
-                { to: "/category/selected", label: "Selecionados" },
-                { to: "/category/commissioned", label: "Encomendados" },
-                { to: "/category/editorial", label: "Editorial" },
-                { to: "/category/personal", label: "Pessoal" },
+                { to: "/category/selected", label: "Destaques" },
+                { to: "/category/commissioned", label: "Blackwork" },
+                { to: "/category/editorial", label: "Fine Line" },
+                { to: "/category/personal", label: "Realismo" },
+                { to: "/about", label: "Sobre" },
+                { to: "/contact", label: "Contato" },
               ].map((item) => (
                 <Link 
                   key={item.to}

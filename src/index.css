@@ -344,3 +344,16 @@
     @apply focus:translate-y-0 transition-transform duration-200;
   }
 }
+
+/* Hide Lovable badge - authorized by project owner */
+a[href*="lovable.dev"],
+iframe[src*="lovable.dev"],
+div[style*="Edit with Lovable"],
+.lovable-badge {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+}

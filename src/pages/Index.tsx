@@ -12,6 +12,10 @@ import { AIChatAssistant } from "@/components/AIChatAssistant";
 import { AISuggestions } from "@/components/AISuggestions";
 import { AIImageGenerator } from "@/components/AIImageGenerator";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import ServicesSection from "@/components/ServicesSection";
+import FAQSection from "@/components/FAQSection";
+import StylesShowcase from "@/components/StylesShowcase";
+import CTABanner from "@/components/CTABanner";
 
 const Index = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -127,6 +131,12 @@ const Index = () => {
           </div>
         )}
 
+        {/* Styles Showcase Section */}
+        <StylesShowcase />
+
+        {/* Services & Pricing Section */}
+        <ServicesSection />
+
         {/* Testimonials Section */}
         <TestimonialsCarousel />
 
@@ -217,6 +227,12 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <FAQSection />
+
+        {/* CTA Banner */}
+        <CTABanner />
       </main>
 
       {lightboxOpen && displayImages.length > 0 && (

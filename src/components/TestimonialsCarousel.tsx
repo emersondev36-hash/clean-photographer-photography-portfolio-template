@@ -5,31 +5,31 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Maria Santos",
-    role: "Diretora de Arte, Vogue Brasil",
-    content: "A sensibilidade artística da Raya é incomparável. Cada imagem que ela captura transcende a fotografia comum e se torna verdadeira arte.",
-    avatar: "MS"
+    name: "Mariana Costa",
+    role: "Cliente desde 2022",
+    content: "Fiz minha primeira tatuagem aqui e a experiência foi incrível. O artista entendeu exatamente o que eu queria e o resultado superou todas as expectativas.",
+    avatar: "MC"
   },
   {
     id: 2,
-    name: "Carlos Eduardo",
-    role: "CEO, Galeria Modernista",
-    content: "Trabalhamos com centenas de fotógrafos ao longo dos anos, mas o trabalho de Raya tem uma qualidade etérea que simplesmente não encontramos em nenhum outro lugar.",
-    avatar: "CE"
+    name: "Lucas Oliveira",
+    role: "4 tatuagens realizadas",
+    content: "Profissionalismo impecável e ambiente super limpo. Cada tatuagem que fiz aqui ficou perfeita. Recomendo de olhos fechados!",
+    avatar: "LO"
   },
   {
     id: 3,
-    name: "Juliana Ferreira",
-    role: "Editora-Chefe, Elle Decor",
-    content: "As composições de Raya são magistrais. Ela consegue capturar a alma de cada projeto arquitetônico de uma forma única e poética.",
-    avatar: "JF"
+    name: "Carolina Mendes",
+    role: "Cliente desde 2020",
+    content: "A atenção aos detalhes é impressionante. Minha tatuagem em fine line ficou delicada e perfeita, exatamente como eu sonhava.",
+    avatar: "CM"
   },
   {
     id: 4,
-    name: "Roberto Almeida",
-    role: "Curador, MASP",
-    content: "A obra de Raya é um testemunho do poder da fotografia como forma de arte. Cada série conta uma história profunda e envolvente.",
-    avatar: "RA"
+    name: "Rafael Santos",
+    role: "Cover-up + novas tattoos",
+    content: "Vieram recomendados para fazer um cover-up e o resultado foi espetacular. A arte antiga sumiu e agora tenho uma obra de arte no braço.",
+    avatar: "RS"
   }
 ];
 

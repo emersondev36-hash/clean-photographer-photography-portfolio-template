@@ -7,6 +7,8 @@ import { Instagram, Mail, Phone, MapPin, ArrowUpRight, Send } from "lucide-react
 import PortfolioHeader from "@/components/PortfolioHeader";
 import PortfolioFooter from "@/components/PortfolioFooter";
 import SEO from "@/components/SEO";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import StudioMap from "@/components/StudioMap";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -19,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
@@ -47,12 +50,25 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.from("contacts").insert({
+        name: data.name,
+        email: data.email,
+        phone: data.phone || null,
+        style: data.style || null,
+        message: data.message,
+      });
+
+      if (error) throw error;
+
       toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
       form.reset();
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      toast.error("Erro ao enviar mensagem. Tente novamente.");
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const contactInfo = [
@@ -358,10 +374,21 @@ const Contact = () => {
                 </div>
               </motion.div>
             </div>
+
+            {/* Map Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-16"
+            >
+              <StudioMap />
+            </motion.div>
           </div>
         </section>
       </main>
 
+      <WhatsAppButton />
       <PortfolioFooter />
     </>
   );

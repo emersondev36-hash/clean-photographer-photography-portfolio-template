@@ -16,6 +16,9 @@ import ServicesSection from "@/components/ServicesSection";
 import FAQSection from "@/components/FAQSection";
 import StylesShowcase from "@/components/StylesShowcase";
 import CTABanner from "@/components/CTABanner";
+import AfterCareSection from "@/components/AfterCareSection";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -134,8 +137,14 @@ const Index = () => {
         {/* Styles Showcase Section */}
         <StylesShowcase />
 
+        {/* Before/After Slider Section */}
+        <BeforeAfterSlider />
+
         {/* Services & Pricing Section */}
         <ServicesSection />
+
+        {/* Aftercare Section */}
+        <AfterCareSection />
 
         {/* Testimonials Section */}
         <TestimonialsCarousel />
@@ -245,6 +254,9 @@ const Index = () => {
 
       {/* AI Chat Assistant - floating */}
       <AIChatAssistant />
+
+      {/* WhatsApp Button */}
+      <WhatsAppButton />
 
       <PortfolioFooter />
     </>

@@ -10,28 +10,42 @@ interface BeforeAfterImage {
   afterUrl: string;
 }
 
-// Placeholder data - in production, these would be real images
+// Exemplos de coberturas - imagens representativas de tatuagens
 const coverUpExamples: BeforeAfterImage[] = [
   {
     id: "1",
     title: "Cobertura Floral",
-    description: "Transformação de tatuagem antiga em composição floral detalhada",
-    beforeUrl: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&h=800&fit=crop",
-    afterUrl: "https://images.unsplash.com/photo-1590246814883-57c511e76c68?w=600&h=800&fit=crop",
+    description: "Transformação de tatuagem desbotada em composição floral detalhada com rosas e folhagens",
+    beforeUrl: "https://images.pexels.com/photos/4123897/pexels-photo-4123897.jpeg?auto=compress&cs=tinysrgb&w=600",
+    afterUrl: "https://images.pexels.com/photos/1304647/pexels-photo-1304647.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     id: "2",
     title: "Cobertura Blackwork",
-    description: "Restauração completa com técnica blackwork geométrico",
-    beforeUrl: "https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=600&h=800&fit=crop",
-    afterUrl: "https://images.unsplash.com/photo-1569494523408-a64a430c4331?w=600&h=800&fit=crop",
+    description: "Restauração completa utilizando técnica blackwork geométrico com padrões simétricos",
+    beforeUrl: "https://images.pexels.com/photos/4125659/pexels-photo-4125659.jpeg?auto=compress&cs=tinysrgb&w=600",
+    afterUrl: "https://images.pexels.com/photos/955938/pexels-photo-955938.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     id: "3",
     title: "Cobertura Realista",
-    description: "Conversão de tribal antigo em retrato realista",
-    beforeUrl: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?w=600&h=800&fit=crop",
-    afterUrl: "https://images.unsplash.com/photo-1542349314-10d26c8e1c1c?w=600&h=800&fit=crop",
+    description: "Conversão de tribal antigo em retrato realista com técnicas de sombreamento avançadas",
+    beforeUrl: "https://images.pexels.com/photos/4125548/pexels-photo-4125548.jpeg?auto=compress&cs=tinysrgb&w=600",
+    afterUrl: "https://images.pexels.com/photos/2183131/pexels-photo-2183131.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    id: "4",
+    title: "Cobertura Ornamental",
+    description: "Transformação de tatuagem tribal em design ornamental inspirado em mandalas",
+    beforeUrl: "https://images.pexels.com/photos/3622614/pexels-photo-3622614.jpeg?auto=compress&cs=tinysrgb&w=600",
+    afterUrl: "https://images.pexels.com/photos/2649403/pexels-photo-2649403.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    id: "5",
+    title: "Cobertura Fine Line",
+    description: "Renovação de tatuagem antiga com traços finos e delicados em estilo minimalista",
+    beforeUrl: "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg?auto=compress&cs=tinysrgb&w=600",
+    afterUrl: "https://images.pexels.com/photos/1304647/pexels-photo-1304647.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
 ];
 

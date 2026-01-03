@@ -1,11 +1,13 @@
 import { motion } from "motion/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface Style {
   name: string;
   description: string;
   image: string;
   tags: string[];
+  href: string;
 }
 
 const styles: Style[] = [
@@ -14,36 +16,42 @@ const styles: Style[] = [
     description: "Arte em preto sólido com forte impacto visual. Perfeito para quem busca designs ousados e atemporais.",
     image: "https://images.pexels.com/photos/955938/pexels-photo-955938.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["Geométrico", "Tribal", "Ornamental"],
+    href: "/category/commissioned",
   },
   {
     name: "Fine Line",
     description: "Traços delicados e precisos que criam designs elegantes e minimalistas.",
     image: "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["Minimalista", "Delicado", "Elegante"],
+    href: "/category/editorial",
   },
   {
     name: "Realismo",
     description: "Retratos e cenas hiper-realistas com riqueza de detalhes impressionante.",
     image: "https://images.pexels.com/photos/2183131/pexels-photo-2183131.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["Retratos", "Natureza", "3D"],
+    href: "/category/personal",
   },
   {
     name: "Dotwork",
     description: "Técnica pontilhista que cria texturas únicas e degradês suaves.",
     image: "https://images.pexels.com/photos/3622614/pexels-photo-3622614.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["Mandalas", "Sagrado", "Orgânico"],
+    href: "/category/selected",
   },
   {
     name: "Neo Traditional",
     description: "Evolução do tradicional com cores vibrantes e linhas mais refinadas.",
     image: "https://images.pexels.com/photos/4125548/pexels-photo-4125548.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["Colorido", "Bold", "Ilustrativo"],
+    href: "/category/commissioned",
   },
   {
     name: "Ornamental",
     description: "Padrões decorativos inspirados em arte sacra e arquitetura.",
     image: "https://images.pexels.com/photos/2649403/pexels-photo-2649403.jpeg?auto=compress&cs=tinysrgb&w=800",
     tags: ["Barroco", "Filigrana", "Simétrico"],
+    href: "/category/editorial",
   },
 ];
 
@@ -144,7 +152,10 @@ const StylesShowcase = () => {
                 
                 {/* View more */}
                 <div className="mt-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                  <span className="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider">
+                  <Link 
+                    to={style.href}
+                    className="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider hover:gap-3 transition-all"
+                  >
                     <span>Ver trabalhos</span>
                     <svg 
                       className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" 
@@ -154,7 +165,7 @@ const StylesShowcase = () => {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </span>
+                  </Link>
                 </div>
               </div>
               

@@ -49,10 +49,10 @@ const CategoryGallery = () => {
 
   const getCategoryTitle = (cat: string) => {
     const titles: Record<string, string> = {
-      'selected': 'Selecionados',
-      'commissioned': 'Encomendados',
-      'editorial': 'Editorial',
-      'personal': 'Pessoal',
+      'selected': 'Destaques',
+      'commissioned': 'Blackwork',
+      'editorial': 'Fine Line',
+      'personal': 'Realismo',
       'all': 'Galeria Completa'
     };
     return titles[cat] || 'Galeria';
@@ -60,28 +60,28 @@ const CategoryGallery = () => {
 
   const getCategoryDescription = (cat: string) => {
     const descriptions: Record<string, string> = {
-      'selected': 'Seleção curada de campanhas de moda e trabalhos editoriais.',
-      'commissioned': 'Campanhas comerciais para marcas de luxo.',
-      'editorial': 'Fotografia editorial para publicações de destaque.',
-      'personal': 'Projetos pessoais e experimentação criativa.',
-      'all': 'Portfólio completo de trabalhos.'
+      'selected': 'Nossos melhores trabalhos selecionados, destacando a excelência artística do estúdio.',
+      'commissioned': 'Arte em preto sólido com forte impacto visual. Designs ousados e atemporais.',
+      'editorial': 'Traços delicados e precisos que criam designs elegantes e minimalistas.',
+      'personal': 'Retratos e cenas hiper-realistas com riqueza de detalhes impressionante.',
+      'all': 'Explore toda a nossa coleção de tatuagens.'
     };
-    return descriptions[cat] || 'Explore a coleção';
+    return descriptions[cat] || 'Explore nossa coleção';
   };
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": `${getCategoryTitle(category)} - Maria Silva`,
+    "name": `${getCategoryTitle(category)} - Tatuagens Style`,
     "description": getCategoryDescription(category),
-    "url": `https://mariasilva.com.br/category/${category}`,
-    "creator": { "@type": "Person", "name": "Maria Silva" }
+    "url": `https://tatuagensstyle.com.br/category/${category}`,
+    "creator": { "@type": "Organization", "name": "Tatuagens Style" }
   };
 
   return (
     <>
       <SEO
-        title={`${getCategoryTitle(category)} - Maria Silva`}
+        title={`${getCategoryTitle(category)} - Tatuagens Style`}
         description={getCategoryDescription(category)}
         canonicalUrl={`/category/${category}`}
         jsonLd={jsonLd}

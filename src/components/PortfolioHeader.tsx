@@ -102,6 +102,13 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
           </Link>
           
           <Link
+            to="/agendar"
+            className="px-5 py-2.5 rounded-full text-sm tracking-wide bg-primary text-primary-foreground hover:opacity-90 glow-purple transition-all duration-300"
+          >
+            Agendar
+          </Link>
+          
+          <Link
             to="/contact"
             className="px-5 py-2.5 rounded-full text-sm tracking-wide glass text-primary hover:glow-purple transition-all duration-300"
           >
@@ -181,16 +188,31 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
                   </Link>
                 </motion.div>
                 
-                {/* Contact Link */}
+                {/* Agendar Link */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
                   <Link
-                    to="/contact"
+                    to="/agendar"
                     onClick={() => setMobileMenuOpen(false)}
                     className="font-display text-4xl tracking-tight text-primary text-glow transition-colors duration-300"
+                  >
+                    Agendar
+                  </Link>
+                </motion.div>
+                
+                {/* Contact Link */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <Link
+                    to="/contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="font-display text-4xl tracking-tight text-muted-foreground hover:text-foreground transition-colors duration-300"
                   >
                     Contato
                   </Link>

@@ -75,7 +75,7 @@ const CTABanner = () => {
             
             {/* Secondary CTAs */}
             <a 
-              href="https://wa.me/5511999999999" 
+              href="https://wa.me/5541997539084" 
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4 border border-border hover:border-primary text-foreground hover:text-primary transition-all duration-500 font-mono text-sm uppercase tracking-wider"

@@ -54,7 +54,7 @@ const PortfolioFooter = () => {
                 <Mail className="w-5 h-5" />
               </a>
               <a
-                href="tel:+5511999887766"
+                href="tel:+5541997539084"
                 className="w-10 h-10 rounded-xl glass-subtle flex items-center justify-center text-muted-foreground hover:text-primary hover:glow-purple transition-all duration-300"
               >
                 <Phone className="w-5 h-5" />
@@ -101,10 +101,10 @@ const PortfolioFooter = () => {
                 contato@tatuagensstyle.com.br
               </a>
               <a
-                href="tel:+5511999887766"
+                href="tel:+5541997539084"
                 className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
-                +55 (11) 99988-7766
+                +55 (41) 99753-9084
               </a>
               <a
                 href="https://instagram.com/tatuagensstyle"

@@ -1,11 +1,11 @@
 {
-  "name": "Raya Photography",
-  "short_name": "Raya",
-  "description": "Contemporary landscape photography exploring the quiet beauty of rural spaces",
+  "name": "Tatuagens Style",
+  "short_name": "Tattoo Style",
+  "description": "Estúdio de tatuagem artística especializado em blackwork, fine line e realismo",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#08080c",
+  "theme_color": "#08080c",
   "icons": [
     {
       "src": "/favicon-16x16.png",

@@ -13,7 +13,6 @@ import Project from "./pages/Project";
 import CategoryGallery from "./pages/CategoryGallery";
 import NotFound from "./pages/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
-import CustomCursor from "./components/CustomCursor";
 import PageTransition from "./components/PageTransition";
 
 const queryClient = new QueryClient();
@@ -42,7 +41,6 @@ const App = () => (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <TooltipProvider>
         <ErrorBoundary>
-          <CustomCursor />
           <Toaster />
           <Sonner />
           <BrowserRouter>

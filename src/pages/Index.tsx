@@ -19,6 +19,7 @@ import CTABanner from "@/components/CTABanner";
 import AfterCareSection from "@/components/AfterCareSection";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ArtistsSection from "@/components/ArtistsSection";
 
 const Index = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -34,7 +35,7 @@ const Index = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchMixedMedia(activeCategory, 1, 20);
+        const data = await fetchMixedMedia(activeCategory, 1, 12);
         setDisplayImages(data.items);
       } catch (err) {
         console.error('Erro ao carregar mídia:', err);
@@ -148,6 +149,9 @@ const Index = () => {
 
         {/* Testimonials Section */}
         <TestimonialsCarousel />
+
+        {/* Artists Section */}
+        <ArtistsSection />
 
         {/* AI Suggestions Section */}
         <AISuggestions />

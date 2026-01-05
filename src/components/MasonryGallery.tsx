@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "motion/react";
 
 interface GalleryItem {
   type?: "image" | "video";
@@ -20,6 +19,7 @@ interface MasonryGalleryProps {
 const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleImageLoad = (index: number) => {
@@ -28,6 +28,12 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
 
   const handleImageHover = (index: number) => {
     setHoveredIndex(index);
+    
+    // Play video on hover
+    const video = videoRefs.current.get(index);
+    if (video) {
+      video.play().catch(() => {});
+    }
 
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -36,6 +42,16 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
     timerRef.current = setTimeout(() => {
       setHoveredIndex(null);
     }, 3000);
+  };
+
+  const handleMouseLeave = (index: number) => {
+    setHoveredIndex(null);
+    
+    // Pause video on leave
+    const video = videoRefs.current.get(index);
+    if (video) {
+      video.pause();
+    }
   };
 
   useEffect(() => {
@@ -50,21 +66,17 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
     <div className="max-w-[1800px] mx-auto px-4 md:px-8 pb-20">
       <div className="text-center">
         {images.map((image, index) => (
-          <motion.button
+          <button
             key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ 
-              duration: 0.6, 
-              delay: (index % 5) * 0.08,
-              ease: [0.22, 1, 0.36, 1]
-            }}
             onClick={() => onImageClick(index)}
             onMouseEnter={() => handleImageHover(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            className="relative cursor-zoom-in inline-block align-top p-1 md:p-1.5 lg:p-2 group"
-            style={{ height: "300px" }}
+            onMouseLeave={() => handleMouseLeave(index)}
+            className="relative cursor-zoom-in inline-block align-top p-1 md:p-1.5 lg:p-2 group animate-fade-in"
+            style={{ 
+              height: "300px",
+              animationDelay: `${(index % 5) * 80}ms`,
+              animationFillMode: "backwards"
+            }}
           >
             <div className="relative h-full overflow-hidden">
               {image.type === "video" ? (
@@ -80,20 +92,22 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
                     </svg>
                   )}
                   <video
+                    ref={(el) => {
+                      if (el) videoRefs.current.set(index, el);
+                    }}
                     poster={image.src}
-                    autoPlay
                     muted
                     loop
                     playsInline
+                    preload="none"
                     onLoadedData={() => handleImageLoad(index)}
-                    className={`absolute top-0 left-0 h-full w-auto object-contain transition-all duration-700 ease-smooth ${
+                    className={`absolute top-0 left-0 h-full w-auto object-contain transition-all duration-500 ${
                       hoveredIndex !== null && hoveredIndex !== index
                         ? "grayscale opacity-40"
                         : "grayscale-0 opacity-100"
                     } group-hover:scale-[1.03]`}
                     style={{
                       opacity: loadedImages.has(index) ? (hoveredIndex !== null && hoveredIndex !== index ? 0.4 : 1) : 0,
-                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                   >
                     <source src={image.videoSrc} type="video/mp4" />
@@ -115,21 +129,20 @@ const MasonryGallery = ({ images, onImageClick }: MasonryGalleryProps) => {
                     src={image.src}
                     alt={image.alt}
                     onLoad={() => handleImageLoad(index)}
-                    className={`absolute top-0 left-0 h-full w-auto object-contain transition-all duration-700 ease-smooth ${
+                    className={`absolute top-0 left-0 h-full w-auto object-contain transition-all duration-500 ${
                       hoveredIndex !== null && hoveredIndex !== index
                         ? "grayscale opacity-40"
                         : "grayscale-0 opacity-100"
                     } group-hover:scale-[1.03]`}
                     style={{
                       opacity: loadedImages.has(index) ? (hoveredIndex !== null && hoveredIndex !== index ? 0.4 : 1) : 0,
-                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                     loading="lazy"
                   />
                 </picture>
               )}
             </div>
-          </motion.button>
+          </button>
         ))}
       </div>
     </div>

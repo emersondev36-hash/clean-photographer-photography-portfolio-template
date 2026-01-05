@@ -189,8 +189,8 @@ export const fetchMixedMedia = async (
 
 export const transformPexelsToGalleryImage = (photo: PexelsPhoto) => {
   return {
-    src: photo.src.large,
-    highResSrc: photo.src.large2x,
+    src: photo.src.medium, // Usar imagem menor para thumbnails
+    highResSrc: photo.src.large2x, // Alta resolução para lightbox
     alt: '',
     width: photo.width,
     height: photo.height

@@ -40,45 +40,6 @@ const StudioMap = () => {
 
       {/* Map Container */}
       <div className="relative aspect-video bg-obsidian-900">
-        {/* Placeholder map background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-obsidian-800 to-obsidian-900">
-          {/* Grid pattern */}
-          <div 
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
-                linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px)
-              `,
-              backgroundSize: '40px 40px'
-            }}
-          />
-          
-          {/* Map pin illustration */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative">
-              {/* Pulse animation */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 rounded-full bg-primary/20 animate-ping" />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-primary/30 animate-pulse" />
-              </div>
-              
-              {/* Pin */}
-              <div className="relative z-10 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30">
-                <MapPin className="w-6 h-6 text-primary-foreground" fill="currentColor" />
-              </div>
-            </div>
-          </div>
-          
-          {/* "Streets" illustration */}
-          <div className="absolute inset-x-0 top-1/2 h-px bg-border/30" />
-          <div className="absolute inset-y-0 left-1/2 w-px bg-border/30" />
-        </div>
-
-        {/* Iframe embed - uncomment when you have actual embed URL */}
-        {/* 
         <iframe
           src={mapEmbedUrl}
           width="100%"
@@ -88,8 +49,8 @@ const StudioMap = () => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Localização do Estúdio"
+          className="grayscale hover:grayscale-0 transition-all duration-500"
         />
-        */}
       </div>
 
       {/* Address Footer */}

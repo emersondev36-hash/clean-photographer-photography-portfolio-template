@@ -26,7 +26,10 @@ const Index = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [displayImages, setDisplayImages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   const activeCategory = "SELECTED";
 
@@ -37,6 +40,7 @@ const Index = () => {
         setError(null);
         const data = await fetchMixedMedia(activeCategory, 1, 12);
         setDisplayImages(data.items);
+        setHasMore(data.items.length >= 12);
       } catch (err) {
         console.error('Erro ao carregar mídia:', err);
         setError('Falha ao carregar imagens. Por favor, tente novamente mais tarde.');
@@ -47,6 +51,21 @@ const Index = () => {
 
     loadImages();
   }, []);
+
+  const loadMore = async () => {
+    try {
+      setLoadingMore(true);
+      const nextPage = page + 1;
+      const data = await fetchMixedMedia(activeCategory, nextPage, 12);
+      setDisplayImages(prev => [...prev, ...data.items]);
+      setPage(nextPage);
+      setHasMore(data.items.length >= 12);
+    } catch (err) {
+      console.error('Erro ao carregar mais mídia:', err);
+    } finally {
+      setLoadingMore(false);
+    }
+  };
 
   const handleImageClick = (index: number) => {
     setLightboxIndex(index);
@@ -126,6 +145,27 @@ const Index = () => {
               images={displayImages}
               onImageClick={handleImageClick}
             />
+            
+            {/* Load More Button */}
+            {hasMore && (
+              <motion.div 
+                className="text-center py-16"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <button
+                  onClick={loadMore}
+                  disabled={loadingMore}
+                  className="group relative px-10 py-4 border border-primary/40 hover:border-primary hover:bg-primary/10 font-mono text-xs uppercase tracking-[0.2em] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="relative z-10">
+                    {loadingMore ? "Carregando..." : "Carregar Mais"}
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </button>
+              </motion.div>
+            )}
           </section>
         )}
 

@@ -45,7 +45,11 @@ export const categoryQueries: Record<string, string> = {
   'REALISMO': 'realistic tattoo portrait hyperrealistic detailed',
   'DOTWORK': 'dotwork tattoo mandala pointillism sacred geometry',
   'NEOTRADITIONAL': 'neo traditional tattoo colorful bold illustrative',
-  'ORNAMENTAL': 'ornamental tattoo baroque filigree symmetric decorative'
+  'ORNAMENTAL': 'ornamental tattoo baroque filigree symmetric decorative',
+  'WATERCOLOR': 'watercolor tattoo colorful splash artistic abstract painting',
+  'OLDSCHOOL': 'old school tattoo traditional american classic anchor rose eagle',
+  'TRASHPOLKA': 'trash polka tattoo black red abstract realistic chaotic',
+  'LETTERING': 'lettering tattoo calligraphy typography script words font'
 };
 
 export const fetchPexelsPhotos = async (

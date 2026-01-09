@@ -7,7 +7,7 @@ import Lightbox from "@/components/Lightbox";
 import SEO from "@/components/SEO";
 import { fetchMixedMedia } from "@/services/pexels";
 
-const validCategories = ['selected', 'commissioned', 'editorial', 'personal', 'all', 'blackwork', 'fineline', 'realismo', 'dotwork', 'neotraditional', 'ornamental'];
+const validCategories = ['selected', 'commissioned', 'editorial', 'personal', 'all', 'blackwork', 'fineline', 'realismo', 'dotwork', 'neotraditional', 'ornamental', 'watercolor', 'oldschool', 'trashpolka', 'lettering'];
 
 const CategoryGallery = () => {
   const { category } = useParams<{ category: string }>();
@@ -59,7 +59,11 @@ const CategoryGallery = () => {
       'realismo': 'Realismo',
       'dotwork': 'Dotwork',
       'neotraditional': 'Neo Traditional',
-      'ornamental': 'Ornamental'
+      'ornamental': 'Ornamental',
+      'watercolor': 'Watercolor',
+      'oldschool': 'Old School',
+      'trashpolka': 'Trash Polka',
+      'lettering': 'Lettering'
     };
     return titles[cat] || 'Galeria';
   };
@@ -76,7 +80,11 @@ const CategoryGallery = () => {
       'realismo': 'Reprodução hiper-realista de retratos, animais e cenas. Maestria técnica em texturas, sombras e detalhes fotográficos.',
       'dotwork': 'Arte pontilhista que cria degradês e texturas através de milhares de pontos. Ideal para mandalas e geometria sagrada.',
       'neotraditional': 'Evolução moderna do estilo tradicional americano. Linhas bold com cores vibrantes e temas ilustrativos contemporâneos.',
-      'ornamental': 'Padrões decorativos inspirados em arte barroca e arquitetura gótica. Designs simétricos que seguem a anatomia do corpo.'
+      'ornamental': 'Padrões decorativos inspirados em arte barroca e arquitetura gótica. Designs simétricos que seguem a anatomia do corpo.',
+      'watercolor': 'Técnica que imita aquarela com splashes de cor vibrante, sem contornos definidos. Efeito artístico fluido e único.',
+      'oldschool': 'Estilo tradicional americano com linhas grossas, cores sólidas e temas clássicos como âncoras, rosas e águias.',
+      'trashpolka': 'Estilo alemão que combina realismo com elementos abstratos caóticos, usando exclusivamente preto e vermelho.',
+      'lettering': 'Arte tipográfica personalizada. Frases, nomes e palavras em estilos caligráficos únicos e exclusivos.'
     };
     return descriptions[cat] || 'Explore nossa coleção';
   };

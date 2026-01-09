@@ -39,7 +39,13 @@ export const categoryQueries: Record<string, string> = {
   'SELECTED': 'tattoo art blackwork design',
   'COMMISSIONED': 'blackwork tattoo dark ink',
   'EDITORIAL': 'fine line tattoo minimalist delicate',
-  'PERSONAL': 'realistic tattoo portrait detailed'
+  'PERSONAL': 'realistic tattoo portrait detailed',
+  'BLACKWORK': 'blackwork tattoo geometric dark solid ink tribal',
+  'FINELINE': 'fine line tattoo minimalist delicate elegant botanical',
+  'REALISMO': 'realistic tattoo portrait hyperrealistic detailed',
+  'DOTWORK': 'dotwork tattoo mandala pointillism sacred geometry',
+  'NEOTRADITIONAL': 'neo traditional tattoo colorful bold illustrative',
+  'ORNAMENTAL': 'ornamental tattoo baroque filigree symmetric decorative'
 };
 
 export const fetchPexelsPhotos = async (

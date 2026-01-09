@@ -7,7 +7,7 @@ import Lightbox from "@/components/Lightbox";
 import SEO from "@/components/SEO";
 import { fetchMixedMedia } from "@/services/pexels";
 
-const validCategories = ['selected', 'commissioned', 'editorial', 'personal', 'all'];
+const validCategories = ['selected', 'commissioned', 'editorial', 'personal', 'all', 'blackwork', 'fineline', 'realismo', 'dotwork', 'neotraditional', 'ornamental'];
 
 const CategoryGallery = () => {
   const { category } = useParams<{ category: string }>();
@@ -53,7 +53,13 @@ const CategoryGallery = () => {
       'commissioned': 'Blackwork',
       'editorial': 'Fine Line',
       'personal': 'Realismo',
-      'all': 'Galeria Completa'
+      'all': 'Galeria Completa',
+      'blackwork': 'Blackwork',
+      'fineline': 'Fine Line',
+      'realismo': 'Realismo',
+      'dotwork': 'Dotwork',
+      'neotraditional': 'Neo Traditional',
+      'ornamental': 'Ornamental'
     };
     return titles[cat] || 'Galeria';
   };
@@ -64,7 +70,13 @@ const CategoryGallery = () => {
       'commissioned': 'Arte em preto sólido com forte impacto visual. Designs ousados e atemporais.',
       'editorial': 'Traços delicados e precisos que criam designs elegantes e minimalistas.',
       'personal': 'Retratos e cenas hiper-realistas com riqueza de detalhes impressionante.',
-      'all': 'Explore toda a nossa coleção de tatuagens.'
+      'all': 'Explore toda a nossa coleção de tatuagens.',
+      'blackwork': 'Arte em preto sólido com forte impacto visual. Utiliza apenas tinta preta para criar designs geométricos, tribais e coberturas ousadas.',
+      'fineline': 'Técnica de agulha única que produz linhas extremamente finas e delicadas. Perfeita para designs minimalistas e botânicos.',
+      'realismo': 'Reprodução hiper-realista de retratos, animais e cenas. Maestria técnica em texturas, sombras e detalhes fotográficos.',
+      'dotwork': 'Arte pontilhista que cria degradês e texturas através de milhares de pontos. Ideal para mandalas e geometria sagrada.',
+      'neotraditional': 'Evolução moderna do estilo tradicional americano. Linhas bold com cores vibrantes e temas ilustrativos contemporâneos.',
+      'ornamental': 'Padrões decorativos inspirados em arte barroca e arquitetura gótica. Designs simétricos que seguem a anatomia do corpo.'
     };
     return descriptions[cat] || 'Explore nossa coleção';
   };
